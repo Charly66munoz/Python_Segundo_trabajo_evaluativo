@@ -10,7 +10,7 @@ class Trainer(User):
         
     def descripcion(self):
         print("-------------")
-        return f"{self._nombre}, {self._email},\nEspecialidad: {self.to_string_my()}" 
+        return f"Nombre:{self._nombre},\nEmail: {self._email},\nEspecialidad: {self.to_string_my()}" 
     
     def to_string_my(self):
         

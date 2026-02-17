@@ -15,15 +15,16 @@ class Menu:
 
     def menu(self):
         while True:
+            print("")
             print(
-                "Elija la opcion:\n"
                 "1-Crear Usuario\n"
                 "2-Mostrar usuarios\n"
                 "3-Buscar usuario (Puede consultar existencia, agregar reserva y ver las reservas creadas)\n"
                 "4-Crear clase\n"
                 "5-Mostrar clases\n"
                 "6-Buscar clases\n"
-                "0-Salir"
+                "0-Salir\n"
+                "Elija la opcion:"
                     )
             try:
                 option = int(input())
@@ -87,23 +88,37 @@ class Menu:
             print("Debe ingresar un número")
             return
 
+        if (tipo > 2 or tipo < 1 ):
+            print("Numero invalido")
+            return
         usuarios = self.userController.filtrar_por_tipo(tipo)
-
         if not usuarios:
-            print("Aun no existen usuarios de este tipo usuarios de este tipo")
+            print("Aun no existen usuarios de este tipo")
+            
             return False                  
-        print()
+        
         #i seria nuestro indice, mientras que u es el objeto. Ponemos start para que comienze desde el 1 la lista
         for i, u in enumerate(usuarios, start=1):
             print(f"{i}- {u.descripcion()}")
-        print("Seleccione un usuario:")
-        print("Ingrese el numero del usuario")
-        indice = int(input())
 
-        if indice <0 or indice >= len(usuarios):
-            print("Seleccion invalida")
-            return
-        return usuarios[indice]
+        print("Seleccione un usuario:")
+        print("Ingrese el numero del usuario (Enter o letra para salir)")
+
+        while True:
+            entrada = input()
+
+            # Salir con Enter o con un carácter no numérico
+            if not entrada or not entrada.isdigit():
+                print("Saliendo de la selección")
+                return None
+
+            indice = int(entrada) - 1
+
+            if indice < 0 or indice >= len(usuarios):
+                print("Seleccion invalida, intente nuevamente")
+                return
+            else:
+                return usuarios[indice]
     
     def menu_crear_clase(self):
         while True:
@@ -120,9 +135,7 @@ class Menu:
                 print("Valor inválido, use s/n")
 
     def busqueda_clase(self):
-
-
-        print("¿Qué tipo de clase desea buscar?")
+        print("¿Qué tipo de clase desea?")
         print("1-Grupal")
         print("2-Personal")
 
@@ -130,20 +143,35 @@ class Menu:
             tipo = int(input())
         except ValueError:
             print("Debe ingresar un número")
-            return
-        if tipo > 2 or tipo < 0:
-            print("El valor ingresado es incorrecto, debe ser un numero entre 1 o 2")
-            return
+            return None
+
+        if tipo not in (1, 2):
+            print("Opción inválida")
+            return None
 
         clases = self.trainController.filtrar_por_tipo(tipo)
 
         if not clases:
             print("Aun no hay clases de este tipo")
-            return
+            return None
 
         for i, c in enumerate(clases, start=1):
             print(f"{i}- {c.descripcion()}")
-        print("Seleccione un entrenamiento:")
+
+        print("Seleccione una clase (Enter para salir):")
+        entrada = input()
+
+        if not entrada or not entrada.isdigit():
+            return None
+
+        indice = int(entrada) - 1
+
+        if indice < 0 or indice >= len(clases):
+            print("Selección inválida")
+            return None
+
+        return clases[indice]
+
         
     
 
@@ -169,7 +197,7 @@ class Menu:
                 case 2:
                     self.reservationController.ver_detalle_reservas_c(user)
                 case 0:
-                    print("Saliendo del sistema")
+                    
                     return
                 case _:
                     print("Opción inválida")
@@ -177,23 +205,28 @@ class Menu:
     
     
     def agregar_reserva(self, user):
-        estado = False
-        while estado == False:
-            activity =  self.busqueda_clase()
+        while True:
+            activity = self.busqueda_clase()
+
+            if activity is None:
+                print("Cancelando reserva")
+                return
+
             if activity.consultar_dispo():
                 self.reservationController.agregar_reserva(user, activity)
                 print("Reserva hecha correctamente")
                 return
             else:
-                print("No hay mas disponiblidad")
-                print("Seleccione otra actividad")
-                estado = False
+                print("No hay más disponibilidad")
+            
+                
 
     
     #sub menu creado para manejar opciones de entrenador
     def menu_entrenador(self):
         while True:
             print(
+                "\n"
                 "Elija la opcion:\n"
                 "1-Ver reservas\n"
                 "2-Ver cupos\n"

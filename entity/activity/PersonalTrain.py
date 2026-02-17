@@ -10,4 +10,4 @@ class PersonalTrain(Train):
         return self.precioBase * (1 + self.recargo)
        
     def descripcion(self):
-        return super().descripcion() + f"\nClase: personal \nPrecio final: {self.calcular_precio()}€"
+        return super().descripcion() + f"\nClase: personal, \nPrecio final: {self.calcular_precio()}€"

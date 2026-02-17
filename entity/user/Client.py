@@ -13,7 +13,6 @@ class Client(User):
         pass
 
     def descripcion(self):
-        print("-------------")
-        return f"{self._nombre} , ${self._email}" 
+        return f"Nombre:{self._nombre},\nEmail: {self._email}" 
 
     

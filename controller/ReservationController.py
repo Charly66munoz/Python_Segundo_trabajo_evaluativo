@@ -15,16 +15,19 @@ class ReservationController:
         nuevaReserva = Reserva(client, train)
         train.agregar_inscripto(client)
         self.reserva.append(nuevaReserva)
-        print("Usuario creado correctamente")
+        print("Reserva creada correctamente")
         print(f"Precio: {train.calcular_precio()}")
 
     def ver_detalle_reservas(self):
+        if self.reserva == []:
+            print("No existen reservas aun")
+            return
         print("RESERVAS:")
         for r in self.reserva:
             print(r.ver_reserva())
 
     def ver_detalle_reservas_c(self, user: Client):
-        print(f"RESERVAS DE {user.get_nombre()}:")
+        print(f"Rerservas de {user.get_nombre()}:")
         tieneReservas = False
 
         for r in self.reserva:

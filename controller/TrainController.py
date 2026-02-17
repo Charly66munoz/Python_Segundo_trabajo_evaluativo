@@ -118,6 +118,9 @@ class TrainController:
         
     #Funcion creada para ver cupos
     def mostrar_cupos(self):
+        if self.trains == []:
+            print("No existen entrenamientos aun")
+            return
         print("Cupos:")
         for t in self.trains:
-            print(f"{t.getNombre()} - {len(t.getInscriptos())}/{t.getCapacidad()}/")
+            print(f"{t.getNombre()} - {len(t.getInscriptos())}/{t.getCapacidad()}")

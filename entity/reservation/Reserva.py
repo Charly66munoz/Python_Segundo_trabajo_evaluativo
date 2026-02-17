@@ -9,5 +9,5 @@ class Reserva:
         self.precioFinal : float = actividad.calcular_precio()
 
     def ver_reserva(self):
-        print("-----------")
-        return f"\nCliente: {self.cliente.descripcion()} \nActiviadad: {self.actividad.getNombre()} - \nPrecio:{self.precioFinal}"
+        
+        return f"\nCliente: {self.cliente.descripcion()} \nActiviadad: {self.actividad.getNombre()} \nPrecio: {self.precioFinal}€\n"

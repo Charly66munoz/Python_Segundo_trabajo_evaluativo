@@ -70,7 +70,9 @@ class UserController:
 
     def mostrar_info(self):
         if not self.usuarios:
+            print()
             print("Aun no existen usuarios, cree un usario primero")
+            print()
             return
         else:
             
@@ -83,12 +85,13 @@ class UserController:
                 elif isinstance(u, Trainer):
                     entrenadores.append(u)
             if clientes:
-                print("----------\nClientes")
+                print("\nClientes")
                 for client in clientes:
                     print(f"{client.descripcion()}")
             if entrenadores:
+                print(f"----------\nEntrenadores")
                 for client in entrenadores:
-                    print(f"----------\nEntrenadores: {client.descripcion()}")
+                    print(f"{client.descripcion()}")
             
     #tex_valido nos permite evitar textos en blanco 
     def tex_valido(self, tex) -> bool:

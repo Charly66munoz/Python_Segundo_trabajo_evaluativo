@@ -14,7 +14,7 @@ class Train(ABC):
     
     def descripcion(self):
         return (
-            f"\nNombre: {self.nombre}\nCapacidad:{self.capacidad}\nInscriptos{len(self.inscriptos)}\n{self.calcular_precio()}€"
+            f"\nNombre: {self.nombre},\nCapacidad:{self.capacidad},\nInscriptos:{len(self.inscriptos)},\nPrecio {self.precioBase}€,"
         )
     def agregar_inscripto(self, user):
         self.inscriptos.append(user)
