@@ -10,7 +10,7 @@ class UserController:
         self.usuarios: List[User] = usuarios if usuarios is not None else []
         #aqui ponemos a List como valor por defecto y luego utilizamos operador ternario para evitar duplicados
     
-    
+    #metodo creado para crear y agregar usuarios a la lista del controller
     def crear_usuario(self):
         print("1-Cliente \n2-Entrenador")
         try:
@@ -85,11 +85,11 @@ class UserController:
                 elif isinstance(u, Trainer):
                     entrenadores.append(u)
             if clientes:
-                print("\nClientes")
+                print("\nClientes\n-------------")
                 for client in clientes:
                     print(f"{client.descripcion()}")
             if entrenadores:
-                print(f"----------\nEntrenadores")
+                print(f"-------------\nEntrenadores")
                 for client in entrenadores:
                     print(f"{client.descripcion()}")
             

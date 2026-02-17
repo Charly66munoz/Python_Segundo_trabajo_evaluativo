@@ -8,7 +8,7 @@ class TrainController:
         self.trains: List[Train] = trains if trains is not None else []
         #aqui ponemos a List como valor por defecto y luego utilizamos operador ternario para evitar duplicados
 
-
+    #Metodo creado para crear entrenamientos y añadirlo a la lista del controller
     def crear_clase(self):
         print("1-Grupal \n2-Personal")
         print("Elija el tipo de clase que desea crear")
@@ -97,13 +97,13 @@ class TrainController:
                 individuals.append(u)
             
             if groups:
-                print("----------\nCLASES GRUPALES:")
+                print("-------------\nCLASES GRUPALES:")
                 for group in groups:
                     print(f"{group.descripcion()}")
             
             if individuals:
                 for indiv in individuals:
-                    print(f"----------\nCLASES PERSONALES: {indiv.descripcion()}")
+                    print(f"-------------\nCLASES PERSONALES: {indiv.descripcion()}")
 
     #Nos retorna un array con el tipo de clase que se haya especificado.
     #En un futuro se puede hacer por medio de texto.
